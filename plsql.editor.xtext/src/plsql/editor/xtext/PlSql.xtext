@@ -1,0 +1,388 @@
+grammar plsql.editor.xtext.PlSql with org.eclipse.xtext.common.Terminals
+
+generate plSql "http://www.editor.plsql/xtext/PlSql"
+
+CompilationUnit
+	: Procedure
+	| Function
+	| Package
+	;
+
+Procedure
+	: 'PROCEDURE' (schemaName=ID '.')? name=ID ('(' parameters=ParameterSequence ')')?
+	  invokerRights=ProcedureInvokerRightsClause?
+	  ('IS' | 'AS')
+	  content=ProcedureContent
+	;
+
+Package
+	: 'PACKAGE' (schemaName=ID '.')? name=ID
+	  invokerRights=ProcedureInvokerRightsClause?
+	  ('IS' | 'AS')
+	  items+=Item*
+	  'END' endName=ID? ';'
+	;
+
+ProcedureDeclaration
+	: 'PROCEDURE' name=ID ('(' parameters=ParameterSequence ')')? ';'
+	;
+
+ProcedureDefinition
+	: 'PROCEDURE' name=ID ('(' parameters=ParameterSequence ')')?
+	  // TODO: USING branch
+	  ('IS' | 'AS')
+	  implementation=ProcedureImplementation
+	;
+
+Function
+	: 'FUNCTION' (schemaName=ID '.')? name=ID ('(' parameters=ParameterSequence ')')?
+	  'RETURN' returnType=DataType
+	  functionClauses+=FunctionClause
+	  ('IS' | 'AS')
+	  content=FunctionContent
+	;
+
+ParameterSequence
+	: parameters+=ParameterDeclaration (',' parameters+=ParameterDeclaration)*
+	;
+
+ParameterDeclaration
+	: name=ID behavior=ParameterBehavior? dataType=DataType value=ParameterValue?
+	;
+
+ParameterValue
+	: (':=' | 'DEFAULT') expression=Expression
+	;
+
+ParameterBehavior
+	: 'IN'
+	| 'OUT' 'NOCOPY'?
+	| 'IN' 'OUT' 'NOCOPY'?
+	;
+
+ProcedureInvokerRightsClause
+	: right=InvokerRight
+	;
+
+FunctionInvokerRightsClause
+	: right=InvokerRight
+	;
+
+enum InvokerRight
+	: CURRENT_USER
+	| DEFINER
+	;
+
+Pragma
+	: PragmaRestrictReferences
+	| PragmaTimestamp
+	;
+
+PragmaRestrictReferences
+	: 'PRAGMA' 'RESTRICT_REFERENCES'
+	  '('
+	  (SubprogramName | 'DEFAULT') ','
+	  restrictions+=PragmaRestrictReferencesRestriction (',' restrictions+=PragmaRestrictReferencesRestriction)*
+	  ')' ';'
+	;
+
+PragmaRestrictReferencesRestriction
+	: 'RNDS'
+	| 'WNDS'
+	| 'RNPS'
+	| 'WNPS'
+	| 'TRUST'
+	;
+
+SubprogramName
+	: ID
+	;
+
+PragmaTimestamp
+	: 'PRAGMA' 'TIMESTAMP' '(' timestamp=STRING ')' ';'
+	;
+
+DataType
+	: 'NUMBER' ('(' INT (',' INT)? ')')?
+	| 'VARCHAR2' ('(' INT ')')?
+	| 'BOOLEAN'
+	| ID
+	;
+
+ProcedureContent
+	: ProcedureImplementation
+	// TODO | CallSpecification
+	| ExternalProcedureDeclaration
+	;
+
+ProcedureImplementation
+	: declareSection=DeclareSection?
+	  body=StatementBody
+	;
+
+FunctionContent
+	: FunctionImplementation
+	// TODO | CallSpecification
+	;
+
+FunctionImplementation
+	: declareSection=DeclareSection?
+	  body=StatementBody
+	;
+
+FunctionClause
+	: FunctionInvokerRightsClause
+	| DeterministicClause
+	// TODO | ParallelEnableClause
+	| ResultCacheClause
+	| PipelinedClause
+	;
+
+DeterministicClause
+	: {DeterministicClause} 'DETERMINISTIC'
+	;
+
+ResultCacheClause
+	: {ResultCacheClause} 'RESULT_CACHE' ('RELIES_ON' '(' (dataSources+=ID (',' dataSources+=ID))? ')')?
+	;
+
+PipelinedClause
+	: {PipelinedClause} 'PIPELINED'
+	;
+
+StatementBody
+	: 'BEGIN' statements+=Statement+ 'END' endName=ID? ';'
+	;
+
+DeclareSection
+	// NOTE: DECLARE should not be allowed for non-anonymous blocks!
+	: 'DECLARE'? items+=Item+
+	;
+
+Item
+	: ItemDeclaration
+	// TODO | TypeDefinition
+	// TODO | FunctionDeclaration
+	// TODO | FunctionDefinition
+	| ProcedureDeclaration
+	| ProcedureDefinition
+	| Pragma
+	;
+
+ItemDeclaration
+	: VariableDeclaration
+	;
+
+ExternalProcedureDeclaration
+	: {ExternalProcedureDeclaration} 'EXTERNAL'
+	;
+
+VariableDeclaration
+// FIXME: NOT_NULL is not inline since, otherwise, there would be an error in the grammar. it's not clear why...
+	: name=ID isConstant?='CONSTANT'? dataType=DataType isNotNull?=(NOT_NULL)? value=VariableValue? ';'
+	;
+
+NOT_NULL
+	: 'NOT' 'NULL'
+	;
+
+VariableValue
+	: (':=' | 'DEFAULT') expression=Expression
+	;
+
+Expression
+	: IntLiteralExpression
+	| StringLiteralExpression
+	| BooleanLiteralExpression
+	| NullLiteralExpression
+	| VariableRefExpression
+	;
+
+IntLiteralExpression
+	: value=INT
+	;
+
+StringLiteralExpression
+	: value=STRING
+	;
+
+BooleanLiteralExpression
+	// TODO: Make a boolean out of this.
+	: value=('TRUE' | 'FALSE')
+	;
+
+NullLiteralExpression
+	: {NullLiteralExpression} 'NULL'
+	;
+
+VariableRefExpression
+	: variable=VariableRef
+	;
+
+Statement
+	: AssignmentStatement
+	| BlockStatement
+	| CaseStatement
+	| CloseStatement
+	| ContinueStatement
+	// TODO | ExecuteImmediateStatement
+	| ExitStatement
+	| FetchStatement
+	// TODO | ForallStatement
+	| GotoStatement
+	| IfStatement
+	| LoopStatement
+	| NullStatement
+	// TODO | OpenStatement
+	// TODO | OpenForStatement
+	| RaiseStatement
+	| ReturnStatement
+	// TODO | SqlStatement
+	;
+
+Label
+	: '<<' name=ID '>>'
+	;
+
+AssignmentStatement
+	: labels+=Label* target=AssignmentTarget ':=' expression=Expression ';'
+	;
+
+AssignmentTarget
+	: VariableAssignmentTarget
+	;
+
+VariableAssignmentTarget
+	: variable=VariableRef
+	;
+
+BlockStatement
+	: labels+=Label*
+	  declareSection=DeclareSection?
+	  body=StatementBody
+	;
+
+CaseStatement
+	: labels+=Label* 'CASE' expression=Expression?
+	  whenBranches+=CaseStatementWhenBranch+
+	  elseBranch=CaseStatementElseBranch?
+	  'END' 'CASE' endLabel=ID? ';'
+	;
+
+CaseStatementWhenBranch
+	: 'WHEN' expression=Expression 'THEN' statements+=Statement+
+	;
+
+CaseStatementElseBranch
+	: 'ELSE' statements+=Statement+
+	;
+
+CloseStatement
+	: labels+=Label* 'CLOSE' cursor=VariableRef ';'
+	;
+
+ContinueStatement
+	: {ContinueStatement} labels+=Label* 'CONTINUE' labelName=ID? ('WHEN' whenExpression=Expression)? ';'
+	;
+
+ExitStatement
+	: {ExitStatement} labels+=Label* 'EXIT' labelName=ID? ('WHEN' whenExpression=Expression)? ';'
+	;
+
+FetchStatement
+	: labels+=Label* 'FETCH' cursor=VariableRef? intoClause=FetchStatementIntoClause ';'
+	;
+
+FetchStatementIntoClause
+	: FetchStatementSingleIntoClause
+	| FetchStatementBulkIntoClause
+	;
+
+FetchStatementSingleIntoClause
+	: 'INTO' targetVariables+=VariableRef+
+	;
+
+FetchStatementBulkIntoClause
+	:'BULK' 'COLLECT' 'INTO' targetVariables+=VariableRef+ ('LIMIT' limitExpression=Expression)?
+	;
+
+GotoStatement
+	: labels+=Label* 'GOTO' labelName=[Label] ';'
+	;
+
+IfStatement
+	: labels+=Label* 'IF' expression=Expression 'THEN' statements+=Statement+
+	  elsifBranches+=IfStatementElsifBranch*
+	  elseBranch=IfStatementElseBranch?
+	  'END' 'IF' ';'
+	;
+
+IfStatementElsifBranch
+	: 'ELSIF' expression=Expression 'THEN' statements+=Statement+
+	;
+
+IfStatementElseBranch
+	: 'ELSE' statements+=Statement+
+	;
+
+LoopStatement
+	: BasicLoopStatement
+	| WhileLoopStatement
+	| ForLoopStatement
+	;
+
+BasicLoopStatement
+	: labels+=Label* 'LOOP' statements+=Statement+ 'END' 'LOOP' endLabel=ID? ';'
+	;
+
+WhileLoopStatement
+	: labels+=Label* 'WHILE' expression=Expression
+	  'LOOP' statements+=Statement+ 'END' 'LOOP'endLabel=ID? ';'
+	;
+
+ForLoopStatement
+	: labels+=Label* 'FOR' indexVariable=LoopVariableDeclaration 'IN' 'REVERSE'? lowerBound=Expression '..' upperBound=Expression
+	  'LOOP' statements+=Statement+ 'END' 'LOOP'endLabel=ID? ';'
+	;
+
+ReturnStatement
+	: {ReturnStatement} labels+=Label* 'RETURN' expression=Expression? ';'
+	;
+
+NullStatement
+	: {NullStatement} labels+=Label* 'NULL' ';'
+	;
+
+RaiseStatement
+	: {RaiseStatement} labels+=Label* 'RAISE' exceptionName=ID? ';'
+	;
+
+VariableRef
+	: isHostRef?=':'? name=QualifiedName
+	;
+
+QualifiedName
+	: names+=Name ('.' names+=Name)*
+	;
+
+Name
+	: declaration=[NameDeclaration]
+	;
+
+LoopVariableDeclaration
+	: name=ID
+	;
+
+NameDeclaration
+	: VariableDeclaration
+	| ParameterDeclaration
+	| Procedure
+	| Function
+	| Package
+	| ProcedureDefinition
+	| LoopVariableDeclaration
+	;
+
+terminal SL_COMMENT
+	: '--' !('\n'|'\r')* ('\r'? '\n')?
+	;

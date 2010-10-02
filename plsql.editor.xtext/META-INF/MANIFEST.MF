@@ -1,0 +1,31 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: plsql.editor.xtext
+Bundle-Vendor: My Company
+Bundle-Version: 1.0.0
+Bundle-SymbolicName: plsql.editor.xtext; singleton:=true
+Bundle-ActivationPolicy: lazy
+Require-Bundle: org.eclipse.xtext,
+ org.eclipse.xtext.generator;resolution:=optional,
+ org.apache.commons.logging;resolution:=optional,
+ org.eclipse.emf.codegen.ecore;resolution:=optional,
+ org.eclipse.emf.mwe.utils;resolution:=optional,
+ org.eclipse.emf.mwe2.launch;resolution:=optional,
+ com.ibm.icu;resolution:=optional,
+ org.eclipse.xtext.xtend;resolution:=optional,
+ org.eclipse.xtext.util,
+ org.eclipse.emf.ecore,
+ org.eclipse.emf.common,
+ org.antlr.runtime
+Import-Package: org.apache.log4j
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Export-Package: plsql.editor.xtext,
+ plsql.editor.xtext.services,
+ plsql.editor.xtext.plSql,
+ plsql.editor.xtext.plSql.impl,
+ plsql.editor.xtext.plSql.util,
+ plsql.editor.xtext.parseTreeConstruction,
+ plsql.editor.xtext.parser.antlr,
+ plsql.editor.xtext.parser.antlr.internal,
+ plsql.editor.xtext.parser.antlr.lexer,
+ plsql.editor.xtext.validation

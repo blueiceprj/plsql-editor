@@ -1,0 +1,1336 @@
+<?xml version="1.0" encoding="ASCII"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:xtext="http://www.eclipse.org/2008/Xtext">
+  <xtext:Grammar name="plsql.editor.xtext.PlSql" usedGrammars="/1">
+    <metamodelDeclarations xsi:type="xtext:GeneratedMetamodel" name="plSql">
+      <ePackage href="http://www.editor.plsql/xtext/PlSql#/"/>
+    </metamodelDeclarations>
+    <rules xsi:type="xtext:ParserRule" name="CompilationUnit">
+      <type metamodel="/0/@metamodelDeclarations.0">
+        <classifier xsi:type="ecore:EClass" href="http://www.editor.plsql/xtext/PlSql#//CompilationUnit"/>
+      </type>
+      <alternatives xsi:type="xtext:Alternatives">
+        <elements xsi:type="xtext:RuleCall" rule="/0/@rules.1"/>
+        <elements xsi:type="xtext:RuleCall" rule="/0/@rules.5"/>
+        <elements xsi:type="xtext:RuleCall" rule="/0/@rules.2"/>
+      </alternatives>
+    </rules>
+    <rules xsi:type="xtext:ParserRule" name="Procedure">
+      <type metamodel="/0/@metamodelDeclarations.0">
+        <classifier xsi:type="ecore:EClass" href="http://www.editor.plsql/xtext/PlSql#//Procedure"/>
+      </type>
+      <alternatives xsi:type="xtext:Group">
+        <elements xsi:type="xtext:Keyword" value="PROCEDURE"/>
+        <elements xsi:type="xtext:Group" cardinality="?">
+          <elements xsi:type="xtext:Assignment" feature="schemaName" operator="=">
+            <terminal xsi:type="xtext:RuleCall" rule="/1/@rules.0"/>
+          </elements>
+          <elements xsi:type="xtext:Keyword" value="."/>
+        </elements>
+        <elements xsi:type="xtext:Assignment" feature="name" operator="=">
+          <terminal xsi:type="xtext:RuleCall" rule="/1/@rules.0"/>
+        </elements>
+        <elements xsi:type="xtext:Group" cardinality="?">
+          <elements xsi:type="xtext:Keyword" value="("/>
+          <elements xsi:type="xtext:Assignment" feature="parameters" operator="=">
+            <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.6"/>
+          </elements>
+          <elements xsi:type="xtext:Keyword" value=")"/>
+        </elements>
+        <elements xsi:type="xtext:Assignment" cardinality="?" feature="invokerRights" operator="=">
+          <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.10"/>
+        </elements>
+        <elements xsi:type="xtext:Alternatives">
+          <elements xsi:type="xtext:Keyword" value="IS"/>
+          <elements xsi:type="xtext:Keyword" value="AS"/>
+        </elements>
+        <elements xsi:type="xtext:Assignment" feature="content" operator="=">
+          <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.19"/>
+        </elements>
+      </alternatives>
+    </rules>
+    <rules xsi:type="xtext:ParserRule" name="Package">
+      <type metamodel="/0/@metamodelDeclarations.0">
+        <classifier xsi:type="ecore:EClass" href="http://www.editor.plsql/xtext/PlSql#//Package"/>
+      </type>
+      <alternatives xsi:type="xtext:Group">
+        <elements xsi:type="xtext:Keyword" value="PACKAGE"/>
+        <elements xsi:type="xtext:Group" cardinality="?">
+          <elements xsi:type="xtext:Assignment" feature="schemaName" operator="=">
+            <terminal xsi:type="xtext:RuleCall" rule="/1/@rules.0"/>
+          </elements>
+          <elements xsi:type="xtext:Keyword" value="."/>
+        </elements>
+        <elements xsi:type="xtext:Assignment" feature="name" operator="=">
+          <terminal xsi:type="xtext:RuleCall" rule="/1/@rules.0"/>
+        </elements>
+        <elements xsi:type="xtext:Assignment" cardinality="?" feature="invokerRights" operator="=">
+          <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.10"/>
+        </elements>
+        <elements xsi:type="xtext:Alternatives">
+          <elements xsi:type="xtext:Keyword" value="IS"/>
+          <elements xsi:type="xtext:Keyword" value="AS"/>
+        </elements>
+        <elements xsi:type="xtext:Assignment" cardinality="*" feature="items" operator="+=">
+          <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.29"/>
+        </elements>
+        <elements xsi:type="xtext:Keyword" value="END"/>
+        <elements xsi:type="xtext:Assignment" cardinality="?" feature="endName" operator="=">
+          <terminal xsi:type="xtext:RuleCall" rule="/1/@rules.0"/>
+        </elements>
+        <elements xsi:type="xtext:Keyword" value=";"/>
+      </alternatives>
+    </rules>
+    <rules xsi:type="xtext:ParserRule" name="ProcedureDeclaration">
+      <type metamodel="/0/@metamodelDeclarations.0">
+        <classifier xsi:type="ecore:EClass" href="http://www.editor.plsql/xtext/PlSql#//ProcedureDeclaration"/>
+      </type>
+      <alternatives xsi:type="xtext:Group">
+        <elements xsi:type="xtext:Keyword" value="PROCEDURE"/>
+        <elements xsi:type="xtext:Assignment" feature="name" operator="=">
+          <terminal xsi:type="xtext:RuleCall" rule="/1/@rules.0"/>
+        </elements>
+        <elements xsi:type="xtext:Group" cardinality="?">
+          <elements xsi:type="xtext:Keyword" value="("/>
+          <elements xsi:type="xtext:Assignment" feature="parameters" operator="=">
+            <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.6"/>
+          </elements>
+          <elements xsi:type="xtext:Keyword" value=")"/>
+        </elements>
+        <elements xsi:type="xtext:Keyword" value=";"/>
+      </alternatives>
+    </rules>
+    <rules xsi:type="xtext:ParserRule" name="ProcedureDefinition">
+      <type metamodel="/0/@metamodelDeclarations.0">
+        <classifier xsi:type="ecore:EClass" href="http://www.editor.plsql/xtext/PlSql#//ProcedureDefinition"/>
+      </type>
+      <alternatives xsi:type="xtext:Group">
+        <elements xsi:type="xtext:Keyword" value="PROCEDURE"/>
+        <elements xsi:type="xtext:Assignment" feature="name" operator="=">
+          <terminal xsi:type="xtext:RuleCall" rule="/1/@rules.0"/>
+        </elements>
+        <elements xsi:type="xtext:Group" cardinality="?">
+          <elements xsi:type="xtext:Keyword" value="("/>
+          <elements xsi:type="xtext:Assignment" feature="parameters" operator="=">
+            <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.6"/>
+          </elements>
+          <elements xsi:type="xtext:Keyword" value=")"/>
+        </elements>
+        <elements xsi:type="xtext:Alternatives">
+          <elements xsi:type="xtext:Keyword" value="IS"/>
+          <elements xsi:type="xtext:Keyword" value="AS"/>
+        </elements>
+        <elements xsi:type="xtext:Assignment" feature="implementation" operator="=">
+          <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.20"/>
+        </elements>
+      </alternatives>
+    </rules>
+    <rules xsi:type="xtext:ParserRule" name="Function">
+      <type metamodel="/0/@metamodelDeclarations.0">
+        <classifier xsi:type="ecore:EClass" href="http://www.editor.plsql/xtext/PlSql#//Function"/>
+      </type>
+      <alternatives xsi:type="xtext:Group">
+        <elements xsi:type="xtext:Keyword" value="FUNCTION"/>
+        <elements xsi:type="xtext:Group" cardinality="?">
+          <elements xsi:type="xtext:Assignment" feature="schemaName" operator="=">
+            <terminal xsi:type="xtext:RuleCall" rule="/1/@rules.0"/>
+          </elements>
+          <elements xsi:type="xtext:Keyword" value="."/>
+        </elements>
+        <elements xsi:type="xtext:Assignment" feature="name" operator="=">
+          <terminal xsi:type="xtext:RuleCall" rule="/1/@rules.0"/>
+        </elements>
+        <elements xsi:type="xtext:Group" cardinality="?">
+          <elements xsi:type="xtext:Keyword" value="("/>
+          <elements xsi:type="xtext:Assignment" feature="parameters" operator="=">
+            <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.6"/>
+          </elements>
+          <elements xsi:type="xtext:Keyword" value=")"/>
+        </elements>
+        <elements xsi:type="xtext:Keyword" value="RETURN"/>
+        <elements xsi:type="xtext:Assignment" feature="returnType" operator="=">
+          <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.18"/>
+        </elements>
+        <elements xsi:type="xtext:Assignment" feature="functionClauses" operator="+=">
+          <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.23"/>
+        </elements>
+        <elements xsi:type="xtext:Alternatives">
+          <elements xsi:type="xtext:Keyword" value="IS"/>
+          <elements xsi:type="xtext:Keyword" value="AS"/>
+        </elements>
+        <elements xsi:type="xtext:Assignment" feature="content" operator="=">
+          <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.21"/>
+        </elements>
+      </alternatives>
+    </rules>
+    <rules xsi:type="xtext:ParserRule" name="ParameterSequence">
+      <type metamodel="/0/@metamodelDeclarations.0">
+        <classifier xsi:type="ecore:EClass" href="http://www.editor.plsql/xtext/PlSql#//ParameterSequence"/>
+      </type>
+      <alternatives xsi:type="xtext:Group">
+        <elements xsi:type="xtext:Assignment" feature="parameters" operator="+=">
+          <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.7"/>
+        </elements>
+        <elements xsi:type="xtext:Group" cardinality="*">
+          <elements xsi:type="xtext:Keyword" value=","/>
+          <elements xsi:type="xtext:Assignment" feature="parameters" operator="+=">
+            <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.7"/>
+          </elements>
+        </elements>
+      </alternatives>
+    </rules>
+    <rules xsi:type="xtext:ParserRule" name="ParameterDeclaration">
+      <type metamodel="/0/@metamodelDeclarations.0">
+        <classifier xsi:type="ecore:EClass" href="http://www.editor.plsql/xtext/PlSql#//ParameterDeclaration"/>
+      </type>
+      <alternatives xsi:type="xtext:Group">
+        <elements xsi:type="xtext:Assignment" feature="name" operator="=">
+          <terminal xsi:type="xtext:RuleCall" rule="/1/@rules.0"/>
+        </elements>
+        <elements xsi:type="xtext:Assignment" cardinality="?" feature="behavior" operator="=">
+          <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.9"/>
+        </elements>
+        <elements xsi:type="xtext:Assignment" feature="dataType" operator="=">
+          <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.18"/>
+        </elements>
+        <elements xsi:type="xtext:Assignment" cardinality="?" feature="value" operator="=">
+          <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.8"/>
+        </elements>
+      </alternatives>
+    </rules>
+    <rules xsi:type="xtext:ParserRule" name="ParameterValue">
+      <type metamodel="/0/@metamodelDeclarations.0">
+        <classifier xsi:type="ecore:EClass" href="http://www.editor.plsql/xtext/PlSql#//ParameterValue"/>
+      </type>
+      <alternatives xsi:type="xtext:Group">
+        <elements xsi:type="xtext:Alternatives">
+          <elements xsi:type="xtext:Keyword" value=":="/>
+          <elements xsi:type="xtext:Keyword" value="DEFAULT"/>
+        </elements>
+        <elements xsi:type="xtext:Assignment" feature="expression" operator="=">
+          <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.35"/>
+        </elements>
+      </alternatives>
+    </rules>
+    <rules xsi:type="xtext:ParserRule" name="ParameterBehavior">
+      <type metamodel="/1/@metamodelDeclarations.0">
+        <classifier xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      </type>
+      <alternatives xsi:type="xtext:Alternatives">
+        <elements xsi:type="xtext:Keyword" value="IN"/>
+        <elements xsi:type="xtext:Group">
+          <elements xsi:type="xtext:Keyword" value="OUT"/>
+          <elements xsi:type="xtext:Keyword" cardinality="?" value="NOCOPY"/>
+        </elements>
+        <elements xsi:type="xtext:Group">
+          <elements xsi:type="xtext:Keyword" value="IN"/>
+          <elements xsi:type="xtext:Keyword" value="OUT"/>
+          <elements xsi:type="xtext:Keyword" cardinality="?" value="NOCOPY"/>
+        </elements>
+      </alternatives>
+    </rules>
+    <rules xsi:type="xtext:ParserRule" name="ProcedureInvokerRightsClause">
+      <type metamodel="/0/@metamodelDeclarations.0">
+        <classifier xsi:type="ecore:EClass" href="http://www.editor.plsql/xtext/PlSql#//ProcedureInvokerRightsClause"/>
+      </type>
+      <alternatives xsi:type="xtext:Assignment" feature="right" operator="=">
+        <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.12"/>
+      </alternatives>
+    </rules>
+    <rules xsi:type="xtext:ParserRule" name="FunctionInvokerRightsClause">
+      <type metamodel="/0/@metamodelDeclarations.0">
+        <classifier xsi:type="ecore:EClass" href="http://www.editor.plsql/xtext/PlSql#//FunctionInvokerRightsClause"/>
+      </type>
+      <alternatives xsi:type="xtext:Assignment" feature="right" operator="=">
+        <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.12"/>
+      </alternatives>
+    </rules>
+    <rules xsi:type="xtext:EnumRule" name="InvokerRight">
+      <type metamodel="/0/@metamodelDeclarations.0">
+        <classifier xsi:type="ecore:EEnum" href="http://www.editor.plsql/xtext/PlSql#//InvokerRight"/>
+      </type>
+      <alternatives xsi:type="xtext:Alternatives">
+        <elements xsi:type="xtext:EnumLiteralDeclaration">
+          <enumLiteral href="http://www.editor.plsql/xtext/PlSql#//InvokerRight/CURRENT_USER"/>
+          <literal value="CURRENT_USER"/>
+        </elements>
+        <elements xsi:type="xtext:EnumLiteralDeclaration">
+          <enumLiteral href="http://www.editor.plsql/xtext/PlSql#//InvokerRight/DEFINER"/>
+          <literal value="DEFINER"/>
+        </elements>
+      </alternatives>
+    </rules>
+    <rules xsi:type="xtext:ParserRule" name="Pragma">
+      <type metamodel="/0/@metamodelDeclarations.0">
+        <classifier xsi:type="ecore:EClass" href="http://www.editor.plsql/xtext/PlSql#//Pragma"/>
+      </type>
+      <alternatives xsi:type="xtext:Alternatives">
+        <elements xsi:type="xtext:RuleCall" rule="/0/@rules.14"/>
+        <elements xsi:type="xtext:RuleCall" rule="/0/@rules.17"/>
+      </alternatives>
+    </rules>
+    <rules xsi:type="xtext:ParserRule" name="PragmaRestrictReferences">
+      <type metamodel="/0/@metamodelDeclarations.0">
+        <classifier xsi:type="ecore:EClass" href="http://www.editor.plsql/xtext/PlSql#//PragmaRestrictReferences"/>
+      </type>
+      <alternatives xsi:type="xtext:Group">
+        <elements xsi:type="xtext:Keyword" value="PRAGMA"/>
+        <elements xsi:type="xtext:Keyword" value="RESTRICT_REFERENCES"/>
+        <elements xsi:type="xtext:Keyword" value="("/>
+        <elements xsi:type="xtext:Alternatives">
+          <elements xsi:type="xtext:RuleCall" rule="/0/@rules.16"/>
+          <elements xsi:type="xtext:Keyword" value="DEFAULT"/>
+        </elements>
+        <elements xsi:type="xtext:Keyword" value=","/>
+        <elements xsi:type="xtext:Assignment" feature="restrictions" operator="+=">
+          <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.15"/>
+        </elements>
+        <elements xsi:type="xtext:Group" cardinality="*">
+          <elements xsi:type="xtext:Keyword" value=","/>
+          <elements xsi:type="xtext:Assignment" feature="restrictions" operator="+=">
+            <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.15"/>
+          </elements>
+        </elements>
+        <elements xsi:type="xtext:Keyword" value=")"/>
+        <elements xsi:type="xtext:Keyword" value=";"/>
+      </alternatives>
+    </rules>
+    <rules xsi:type="xtext:ParserRule" name="PragmaRestrictReferencesRestriction">
+      <type metamodel="/1/@metamodelDeclarations.0">
+        <classifier xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      </type>
+      <alternatives xsi:type="xtext:Alternatives">
+        <elements xsi:type="xtext:Keyword" value="RNDS"/>
+        <elements xsi:type="xtext:Keyword" value="WNDS"/>
+        <elements xsi:type="xtext:Keyword" value="RNPS"/>
+        <elements xsi:type="xtext:Keyword" value="WNPS"/>
+        <elements xsi:type="xtext:Keyword" value="TRUST"/>
+      </alternatives>
+    </rules>
+    <rules xsi:type="xtext:ParserRule" name="SubprogramName">
+      <type metamodel="/1/@metamodelDeclarations.0">
+        <classifier xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      </type>
+      <alternatives xsi:type="xtext:RuleCall" rule="/1/@rules.0"/>
+    </rules>
+    <rules xsi:type="xtext:ParserRule" name="PragmaTimestamp">
+      <type metamodel="/0/@metamodelDeclarations.0">
+        <classifier xsi:type="ecore:EClass" href="http://www.editor.plsql/xtext/PlSql#//PragmaTimestamp"/>
+      </type>
+      <alternatives xsi:type="xtext:Group">
+        <elements xsi:type="xtext:Keyword" value="PRAGMA"/>
+        <elements xsi:type="xtext:Keyword" value="TIMESTAMP"/>
+        <elements xsi:type="xtext:Keyword" value="("/>
+        <elements xsi:type="xtext:Assignment" feature="timestamp" operator="=">
+          <terminal xsi:type="xtext:RuleCall" rule="/1/@rules.2"/>
+        </elements>
+        <elements xsi:type="xtext:Keyword" value=")"/>
+        <elements xsi:type="xtext:Keyword" value=";"/>
+      </alternatives>
+    </rules>
+    <rules xsi:type="xtext:ParserRule" name="DataType">
+      <type metamodel="/1/@metamodelDeclarations.0">
+        <classifier xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      </type>
+      <alternatives xsi:type="xtext:Alternatives">
+        <elements xsi:type="xtext:Group">
+          <elements xsi:type="xtext:Keyword" value="NUMBER"/>
+          <elements xsi:type="xtext:Group" cardinality="?">
+            <elements xsi:type="xtext:Keyword" value="("/>
+            <elements xsi:type="xtext:RuleCall" rule="/1/@rules.1"/>
+            <elements xsi:type="xtext:Group" cardinality="?">
+              <elements xsi:type="xtext:Keyword" value=","/>
+              <elements xsi:type="xtext:RuleCall" rule="/1/@rules.1"/>
+            </elements>
+            <elements xsi:type="xtext:Keyword" value=")"/>
+          </elements>
+        </elements>
+        <elements xsi:type="xtext:Group">
+          <elements xsi:type="xtext:Keyword" value="VARCHAR2"/>
+          <elements xsi:type="xtext:Group" cardinality="?">
+            <elements xsi:type="xtext:Keyword" value="("/>
+            <elements xsi:type="xtext:RuleCall" rule="/1/@rules.1"/>
+            <elements xsi:type="xtext:Keyword" value=")"/>
+          </elements>
+        </elements>
+        <elements xsi:type="xtext:Keyword" value="BOOLEAN"/>
+        <elements xsi:type="xtext:RuleCall" rule="/1/@rules.0"/>
+      </alternatives>
+    </rules>
+    <rules xsi:type="xtext:ParserRule" name="ProcedureContent">
+      <type metamodel="/0/@metamodelDeclarations.0">
+        <classifier xsi:type="ecore:EClass" href="http://www.editor.plsql/xtext/PlSql#//ProcedureContent"/>
+      </type>
+      <alternatives xsi:type="xtext:Alternatives">
+        <elements xsi:type="xtext:RuleCall" rule="/0/@rules.20"/>
+        <elements xsi:type="xtext:RuleCall" rule="/0/@rules.31"/>
+      </alternatives>
+    </rules>
+    <rules xsi:type="xtext:ParserRule" name="ProcedureImplementation">
+      <type metamodel="/0/@metamodelDeclarations.0">
+        <classifier xsi:type="ecore:EClass" href="http://www.editor.plsql/xtext/PlSql#//ProcedureImplementation"/>
+      </type>
+      <alternatives xsi:type="xtext:Group">
+        <elements xsi:type="xtext:Assignment" cardinality="?" feature="declareSection" operator="=">
+          <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.28"/>
+        </elements>
+        <elements xsi:type="xtext:Assignment" feature="body" operator="=">
+          <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.27"/>
+        </elements>
+      </alternatives>
+    </rules>
+    <rules xsi:type="xtext:ParserRule" name="FunctionContent">
+      <type metamodel="/0/@metamodelDeclarations.0">
+        <classifier xsi:type="ecore:EClass" href="http://www.editor.plsql/xtext/PlSql#//FunctionContent"/>
+      </type>
+      <alternatives xsi:type="xtext:RuleCall" rule="/0/@rules.22"/>
+    </rules>
+    <rules xsi:type="xtext:ParserRule" name="FunctionImplementation">
+      <type metamodel="/0/@metamodelDeclarations.0">
+        <classifier xsi:type="ecore:EClass" href="http://www.editor.plsql/xtext/PlSql#//FunctionImplementation"/>
+      </type>
+      <alternatives xsi:type="xtext:Group">
+        <elements xsi:type="xtext:Assignment" cardinality="?" feature="declareSection" operator="=">
+          <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.28"/>
+        </elements>
+        <elements xsi:type="xtext:Assignment" feature="body" operator="=">
+          <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.27"/>
+        </elements>
+      </alternatives>
+    </rules>
+    <rules xsi:type="xtext:ParserRule" name="FunctionClause">
+      <type metamodel="/0/@metamodelDeclarations.0">
+        <classifier xsi:type="ecore:EClass" href="http://www.editor.plsql/xtext/PlSql#//FunctionClause"/>
+      </type>
+      <alternatives xsi:type="xtext:Alternatives">
+        <elements xsi:type="xtext:RuleCall" rule="/0/@rules.11"/>
+        <elements xsi:type="xtext:RuleCall" rule="/0/@rules.24"/>
+        <elements xsi:type="xtext:RuleCall" rule="/0/@rules.25"/>
+        <elements xsi:type="xtext:RuleCall" rule="/0/@rules.26"/>
+      </alternatives>
+    </rules>
+    <rules xsi:type="xtext:ParserRule" name="DeterministicClause">
+      <type metamodel="/0/@metamodelDeclarations.0">
+        <classifier xsi:type="ecore:EClass" href="http://www.editor.plsql/xtext/PlSql#//DeterministicClause"/>
+      </type>
+      <alternatives xsi:type="xtext:Group">
+        <elements xsi:type="xtext:Action">
+          <type metamodel="/0/@metamodelDeclarations.0">
+            <classifier xsi:type="ecore:EClass" href="http://www.editor.plsql/xtext/PlSql#//DeterministicClause"/>
+          </type>
+        </elements>
+        <elements xsi:type="xtext:Keyword" value="DETERMINISTIC"/>
+      </alternatives>
+    </rules>
+    <rules xsi:type="xtext:ParserRule" name="ResultCacheClause">
+      <type metamodel="/0/@metamodelDeclarations.0">
+        <classifier xsi:type="ecore:EClass" href="http://www.editor.plsql/xtext/PlSql#//ResultCacheClause"/>
+      </type>
+      <alternatives xsi:type="xtext:Group">
+        <elements xsi:type="xtext:Action">
+          <type metamodel="/0/@metamodelDeclarations.0">
+            <classifier xsi:type="ecore:EClass" href="http://www.editor.plsql/xtext/PlSql#//ResultCacheClause"/>
+          </type>
+        </elements>
+        <elements xsi:type="xtext:Keyword" value="RESULT_CACHE"/>
+        <elements xsi:type="xtext:Group" cardinality="?">
+          <elements xsi:type="xtext:Keyword" value="RELIES_ON"/>
+          <elements xsi:type="xtext:Keyword" value="("/>
+          <elements xsi:type="xtext:Group" cardinality="?">
+            <elements xsi:type="xtext:Assignment" feature="dataSources" operator="+=">
+              <terminal xsi:type="xtext:RuleCall" rule="/1/@rules.0"/>
+            </elements>
+            <elements xsi:type="xtext:Group">
+              <elements xsi:type="xtext:Keyword" value=","/>
+              <elements xsi:type="xtext:Assignment" feature="dataSources" operator="+=">
+                <terminal xsi:type="xtext:RuleCall" rule="/1/@rules.0"/>
+              </elements>
+            </elements>
+          </elements>
+          <elements xsi:type="xtext:Keyword" value=")"/>
+        </elements>
+      </alternatives>
+    </rules>
+    <rules xsi:type="xtext:ParserRule" name="PipelinedClause">
+      <type metamodel="/0/@metamodelDeclarations.0">
+        <classifier xsi:type="ecore:EClass" href="http://www.editor.plsql/xtext/PlSql#//PipelinedClause"/>
+      </type>
+      <alternatives xsi:type="xtext:Group">
+        <elements xsi:type="xtext:Action">
+          <type metamodel="/0/@metamodelDeclarations.0">
+            <classifier xsi:type="ecore:EClass" href="http://www.editor.plsql/xtext/PlSql#//PipelinedClause"/>
+          </type>
+        </elements>
+        <elements xsi:type="xtext:Keyword" value="PIPELINED"/>
+      </alternatives>
+    </rules>
+    <rules xsi:type="xtext:ParserRule" name="StatementBody">
+      <type metamodel="/0/@metamodelDeclarations.0">
+        <classifier xsi:type="ecore:EClass" href="http://www.editor.plsql/xtext/PlSql#//StatementBody"/>
+      </type>
+      <alternatives xsi:type="xtext:Group">
+        <elements xsi:type="xtext:Keyword" value="BEGIN"/>
+        <elements xsi:type="xtext:Assignment" cardinality="+" feature="statements" operator="+=">
+          <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.41"/>
+        </elements>
+        <elements xsi:type="xtext:Keyword" value="END"/>
+        <elements xsi:type="xtext:Assignment" cardinality="?" feature="endName" operator="=">
+          <terminal xsi:type="xtext:RuleCall" rule="/1/@rules.0"/>
+        </elements>
+        <elements xsi:type="xtext:Keyword" value=";"/>
+      </alternatives>
+    </rules>
+    <rules xsi:type="xtext:ParserRule" name="DeclareSection">
+      <type metamodel="/0/@metamodelDeclarations.0">
+        <classifier xsi:type="ecore:EClass" href="http://www.editor.plsql/xtext/PlSql#//DeclareSection"/>
+      </type>
+      <alternatives xsi:type="xtext:Group">
+        <elements xsi:type="xtext:Keyword" cardinality="?" value="DECLARE"/>
+        <elements xsi:type="xtext:Assignment" cardinality="+" feature="items" operator="+=">
+          <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.29"/>
+        </elements>
+      </alternatives>
+    </rules>
+    <rules xsi:type="xtext:ParserRule" name="Item">
+      <type metamodel="/0/@metamodelDeclarations.0">
+        <classifier xsi:type="ecore:EClass" href="http://www.editor.plsql/xtext/PlSql#//Item"/>
+      </type>
+      <alternatives xsi:type="xtext:Alternatives">
+        <elements xsi:type="xtext:RuleCall" rule="/0/@rules.30"/>
+        <elements xsi:type="xtext:RuleCall" rule="/0/@rules.3"/>
+        <elements xsi:type="xtext:RuleCall" rule="/0/@rules.4"/>
+        <elements xsi:type="xtext:RuleCall" rule="/0/@rules.13"/>
+      </alternatives>
+    </rules>
+    <rules xsi:type="xtext:ParserRule" name="ItemDeclaration">
+      <type metamodel="/0/@metamodelDeclarations.0">
+        <classifier xsi:type="ecore:EClass" href="http://www.editor.plsql/xtext/PlSql#//ItemDeclaration"/>
+      </type>
+      <alternatives xsi:type="xtext:RuleCall" rule="/0/@rules.32"/>
+    </rules>
+    <rules xsi:type="xtext:ParserRule" name="ExternalProcedureDeclaration">
+      <type metamodel="/0/@metamodelDeclarations.0">
+        <classifier xsi:type="ecore:EClass" href="http://www.editor.plsql/xtext/PlSql#//ExternalProcedureDeclaration"/>
+      </type>
+      <alternatives xsi:type="xtext:Group">
+        <elements xsi:type="xtext:Action">
+          <type metamodel="/0/@metamodelDeclarations.0">
+            <classifier xsi:type="ecore:EClass" href="http://www.editor.plsql/xtext/PlSql#//ExternalProcedureDeclaration"/>
+          </type>
+        </elements>
+        <elements xsi:type="xtext:Keyword" value="EXTERNAL"/>
+      </alternatives>
+    </rules>
+    <rules xsi:type="xtext:ParserRule" name="VariableDeclaration">
+      <type metamodel="/0/@metamodelDeclarations.0">
+        <classifier xsi:type="ecore:EClass" href="http://www.editor.plsql/xtext/PlSql#//VariableDeclaration"/>
+      </type>
+      <alternatives xsi:type="xtext:Group">
+        <elements xsi:type="xtext:Assignment" feature="name" operator="=">
+          <terminal xsi:type="xtext:RuleCall" rule="/1/@rules.0"/>
+        </elements>
+        <elements xsi:type="xtext:Assignment" cardinality="?" feature="isConstant" operator="?=">
+          <terminal xsi:type="xtext:Keyword" value="CONSTANT"/>
+        </elements>
+        <elements xsi:type="xtext:Assignment" feature="dataType" operator="=">
+          <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.18"/>
+        </elements>
+        <elements xsi:type="xtext:Assignment" cardinality="?" feature="isNotNull" operator="?=">
+          <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.33"/>
+        </elements>
+        <elements xsi:type="xtext:Assignment" cardinality="?" feature="value" operator="=">
+          <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.34"/>
+        </elements>
+        <elements xsi:type="xtext:Keyword" value=";"/>
+      </alternatives>
+    </rules>
+    <rules xsi:type="xtext:ParserRule" name="NOT_NULL">
+      <type metamodel="/1/@metamodelDeclarations.0">
+        <classifier xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      </type>
+      <alternatives xsi:type="xtext:Group">
+        <elements xsi:type="xtext:Keyword" value="NOT"/>
+        <elements xsi:type="xtext:Keyword" value="NULL"/>
+      </alternatives>
+    </rules>
+    <rules xsi:type="xtext:ParserRule" name="VariableValue">
+      <type metamodel="/0/@metamodelDeclarations.0">
+        <classifier xsi:type="ecore:EClass" href="http://www.editor.plsql/xtext/PlSql#//VariableValue"/>
+      </type>
+      <alternatives xsi:type="xtext:Group">
+        <elements xsi:type="xtext:Alternatives">
+          <elements xsi:type="xtext:Keyword" value=":="/>
+          <elements xsi:type="xtext:Keyword" value="DEFAULT"/>
+        </elements>
+        <elements xsi:type="xtext:Assignment" feature="expression" operator="=">
+          <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.35"/>
+        </elements>
+      </alternatives>
+    </rules>
+    <rules xsi:type="xtext:ParserRule" name="Expression">
+      <type metamodel="/0/@metamodelDeclarations.0">
+        <classifier xsi:type="ecore:EClass" href="http://www.editor.plsql/xtext/PlSql#//Expression"/>
+      </type>
+      <alternatives xsi:type="xtext:Alternatives">
+        <elements xsi:type="xtext:RuleCall" rule="/0/@rules.36"/>
+        <elements xsi:type="xtext:RuleCall" rule="/0/@rules.37"/>
+        <elements xsi:type="xtext:RuleCall" rule="/0/@rules.38"/>
+        <elements xsi:type="xtext:RuleCall" rule="/0/@rules.39"/>
+        <elements xsi:type="xtext:RuleCall" rule="/0/@rules.40"/>
+      </alternatives>
+    </rules>
+    <rules xsi:type="xtext:ParserRule" name="IntLiteralExpression">
+      <type metamodel="/0/@metamodelDeclarations.0">
+        <classifier xsi:type="ecore:EClass" href="http://www.editor.plsql/xtext/PlSql#//IntLiteralExpression"/>
+      </type>
+      <alternatives xsi:type="xtext:Assignment" feature="value" operator="=">
+        <terminal xsi:type="xtext:RuleCall" rule="/1/@rules.1"/>
+      </alternatives>
+    </rules>
+    <rules xsi:type="xtext:ParserRule" name="StringLiteralExpression">
+      <type metamodel="/0/@metamodelDeclarations.0">
+        <classifier xsi:type="ecore:EClass" href="http://www.editor.plsql/xtext/PlSql#//StringLiteralExpression"/>
+      </type>
+      <alternatives xsi:type="xtext:Assignment" feature="value" operator="=">
+        <terminal xsi:type="xtext:RuleCall" rule="/1/@rules.2"/>
+      </alternatives>
+    </rules>
+    <rules xsi:type="xtext:ParserRule" name="BooleanLiteralExpression">
+      <type metamodel="/0/@metamodelDeclarations.0">
+        <classifier xsi:type="ecore:EClass" href="http://www.editor.plsql/xtext/PlSql#//BooleanLiteralExpression"/>
+      </type>
+      <alternatives xsi:type="xtext:Assignment" feature="value" operator="=">
+        <terminal xsi:type="xtext:Alternatives">
+          <elements xsi:type="xtext:Keyword" value="TRUE"/>
+          <elements xsi:type="xtext:Keyword" value="FALSE"/>
+        </terminal>
+      </alternatives>
+    </rules>
+    <rules xsi:type="xtext:ParserRule" name="NullLiteralExpression">
+      <type metamodel="/0/@metamodelDeclarations.0">
+        <classifier xsi:type="ecore:EClass" href="http://www.editor.plsql/xtext/PlSql#//NullLiteralExpression"/>
+      </type>
+      <alternatives xsi:type="xtext:Group">
+        <elements xsi:type="xtext:Action">
+          <type metamodel="/0/@metamodelDeclarations.0">
+            <classifier xsi:type="ecore:EClass" href="http://www.editor.plsql/xtext/PlSql#//NullLiteralExpression"/>
+          </type>
+        </elements>
+        <elements xsi:type="xtext:Keyword" value="NULL"/>
+      </alternatives>
+    </rules>
+    <rules xsi:type="xtext:ParserRule" name="VariableRefExpression">
+      <type metamodel="/0/@metamodelDeclarations.0">
+        <classifier xsi:type="ecore:EClass" href="http://www.editor.plsql/xtext/PlSql#//VariableRefExpression"/>
+      </type>
+      <alternatives xsi:type="xtext:Assignment" feature="variable" operator="=">
+        <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.68"/>
+      </alternatives>
+    </rules>
+    <rules xsi:type="xtext:ParserRule" name="Statement">
+      <type metamodel="/0/@metamodelDeclarations.0">
+        <classifier xsi:type="ecore:EClass" href="http://www.editor.plsql/xtext/PlSql#//Statement"/>
+      </type>
+      <alternatives xsi:type="xtext:Alternatives">
+        <elements xsi:type="xtext:RuleCall" rule="/0/@rules.43"/>
+        <elements xsi:type="xtext:RuleCall" rule="/0/@rules.46"/>
+        <elements xsi:type="xtext:RuleCall" rule="/0/@rules.47"/>
+        <elements xsi:type="xtext:RuleCall" rule="/0/@rules.50"/>
+        <elements xsi:type="xtext:RuleCall" rule="/0/@rules.51"/>
+        <elements xsi:type="xtext:RuleCall" rule="/0/@rules.52"/>
+        <elements xsi:type="xtext:RuleCall" rule="/0/@rules.53"/>
+        <elements xsi:type="xtext:RuleCall" rule="/0/@rules.57"/>
+        <elements xsi:type="xtext:RuleCall" rule="/0/@rules.58"/>
+        <elements xsi:type="xtext:RuleCall" rule="/0/@rules.61"/>
+        <elements xsi:type="xtext:RuleCall" rule="/0/@rules.66"/>
+        <elements xsi:type="xtext:RuleCall" rule="/0/@rules.67"/>
+        <elements xsi:type="xtext:RuleCall" rule="/0/@rules.65"/>
+      </alternatives>
+    </rules>
+    <rules xsi:type="xtext:ParserRule" name="Label">
+      <type metamodel="/0/@metamodelDeclarations.0">
+        <classifier xsi:type="ecore:EClass" href="http://www.editor.plsql/xtext/PlSql#//Label"/>
+      </type>
+      <alternatives xsi:type="xtext:Group">
+        <elements xsi:type="xtext:Keyword" value="&lt;&lt;"/>
+        <elements xsi:type="xtext:Assignment" feature="name" operator="=">
+          <terminal xsi:type="xtext:RuleCall" rule="/1/@rules.0"/>
+        </elements>
+        <elements xsi:type="xtext:Keyword" value=">>"/>
+      </alternatives>
+    </rules>
+    <rules xsi:type="xtext:ParserRule" name="AssignmentStatement">
+      <type metamodel="/0/@metamodelDeclarations.0">
+        <classifier xsi:type="ecore:EClass" href="http://www.editor.plsql/xtext/PlSql#//AssignmentStatement"/>
+      </type>
+      <alternatives xsi:type="xtext:Group">
+        <elements xsi:type="xtext:Assignment" cardinality="*" feature="labels" operator="+=">
+          <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.42"/>
+        </elements>
+        <elements xsi:type="xtext:Assignment" feature="target" operator="=">
+          <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.44"/>
+        </elements>
+        <elements xsi:type="xtext:Keyword" value=":="/>
+        <elements xsi:type="xtext:Assignment" feature="expression" operator="=">
+          <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.35"/>
+        </elements>
+        <elements xsi:type="xtext:Keyword" value=";"/>
+      </alternatives>
+    </rules>
+    <rules xsi:type="xtext:ParserRule" name="AssignmentTarget">
+      <type metamodel="/0/@metamodelDeclarations.0">
+        <classifier xsi:type="ecore:EClass" href="http://www.editor.plsql/xtext/PlSql#//AssignmentTarget"/>
+      </type>
+      <alternatives xsi:type="xtext:RuleCall" rule="/0/@rules.45"/>
+    </rules>
+    <rules xsi:type="xtext:ParserRule" name="VariableAssignmentTarget">
+      <type metamodel="/0/@metamodelDeclarations.0">
+        <classifier xsi:type="ecore:EClass" href="http://www.editor.plsql/xtext/PlSql#//VariableAssignmentTarget"/>
+      </type>
+      <alternatives xsi:type="xtext:Assignment" feature="variable" operator="=">
+        <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.68"/>
+      </alternatives>
+    </rules>
+    <rules xsi:type="xtext:ParserRule" name="BlockStatement">
+      <type metamodel="/0/@metamodelDeclarations.0">
+        <classifier xsi:type="ecore:EClass" href="http://www.editor.plsql/xtext/PlSql#//BlockStatement"/>
+      </type>
+      <alternatives xsi:type="xtext:Group">
+        <elements xsi:type="xtext:Assignment" cardinality="*" feature="labels" operator="+=">
+          <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.42"/>
+        </elements>
+        <elements xsi:type="xtext:Assignment" cardinality="?" feature="declareSection" operator="=">
+          <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.28"/>
+        </elements>
+        <elements xsi:type="xtext:Assignment" feature="body" operator="=">
+          <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.27"/>
+        </elements>
+      </alternatives>
+    </rules>
+    <rules xsi:type="xtext:ParserRule" name="CaseStatement">
+      <type metamodel="/0/@metamodelDeclarations.0">
+        <classifier xsi:type="ecore:EClass" href="http://www.editor.plsql/xtext/PlSql#//CaseStatement"/>
+      </type>
+      <alternatives xsi:type="xtext:Group">
+        <elements xsi:type="xtext:Assignment" cardinality="*" feature="labels" operator="+=">
+          <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.42"/>
+        </elements>
+        <elements xsi:type="xtext:Keyword" value="CASE"/>
+        <elements xsi:type="xtext:Assignment" cardinality="?" feature="expression" operator="=">
+          <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.35"/>
+        </elements>
+        <elements xsi:type="xtext:Assignment" cardinality="+" feature="whenBranches" operator="+=">
+          <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.48"/>
+        </elements>
+        <elements xsi:type="xtext:Assignment" cardinality="?" feature="elseBranch" operator="=">
+          <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.49"/>
+        </elements>
+        <elements xsi:type="xtext:Keyword" value="END"/>
+        <elements xsi:type="xtext:Keyword" value="CASE"/>
+        <elements xsi:type="xtext:Assignment" cardinality="?" feature="endLabel" operator="=">
+          <terminal xsi:type="xtext:RuleCall" rule="/1/@rules.0"/>
+        </elements>
+        <elements xsi:type="xtext:Keyword" value=";"/>
+      </alternatives>
+    </rules>
+    <rules xsi:type="xtext:ParserRule" name="CaseStatementWhenBranch">
+      <type metamodel="/0/@metamodelDeclarations.0">
+        <classifier xsi:type="ecore:EClass" href="http://www.editor.plsql/xtext/PlSql#//CaseStatementWhenBranch"/>
+      </type>
+      <alternatives xsi:type="xtext:Group">
+        <elements xsi:type="xtext:Keyword" value="WHEN"/>
+        <elements xsi:type="xtext:Assignment" feature="expression" operator="=">
+          <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.35"/>
+        </elements>
+        <elements xsi:type="xtext:Keyword" value="THEN"/>
+        <elements xsi:type="xtext:Assignment" cardinality="+" feature="statements" operator="+=">
+          <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.41"/>
+        </elements>
+      </alternatives>
+    </rules>
+    <rules xsi:type="xtext:ParserRule" name="CaseStatementElseBranch">
+      <type metamodel="/0/@metamodelDeclarations.0">
+        <classifier xsi:type="ecore:EClass" href="http://www.editor.plsql/xtext/PlSql#//CaseStatementElseBranch"/>
+      </type>
+      <alternatives xsi:type="xtext:Group">
+        <elements xsi:type="xtext:Keyword" value="ELSE"/>
+        <elements xsi:type="xtext:Assignment" cardinality="+" feature="statements" operator="+=">
+          <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.41"/>
+        </elements>
+      </alternatives>
+    </rules>
+    <rules xsi:type="xtext:ParserRule" name="CloseStatement">
+      <type metamodel="/0/@metamodelDeclarations.0">
+        <classifier xsi:type="ecore:EClass" href="http://www.editor.plsql/xtext/PlSql#//CloseStatement"/>
+      </type>
+      <alternatives xsi:type="xtext:Group">
+        <elements xsi:type="xtext:Assignment" cardinality="*" feature="labels" operator="+=">
+          <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.42"/>
+        </elements>
+        <elements xsi:type="xtext:Keyword" value="CLOSE"/>
+        <elements xsi:type="xtext:Assignment" feature="cursor" operator="=">
+          <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.68"/>
+        </elements>
+        <elements xsi:type="xtext:Keyword" value=";"/>
+      </alternatives>
+    </rules>
+    <rules xsi:type="xtext:ParserRule" name="ContinueStatement">
+      <type metamodel="/0/@metamodelDeclarations.0">
+        <classifier xsi:type="ecore:EClass" href="http://www.editor.plsql/xtext/PlSql#//ContinueStatement"/>
+      </type>
+      <alternatives xsi:type="xtext:Group">
+        <elements xsi:type="xtext:Action">
+          <type metamodel="/0/@metamodelDeclarations.0">
+            <classifier xsi:type="ecore:EClass" href="http://www.editor.plsql/xtext/PlSql#//ContinueStatement"/>
+          </type>
+        </elements>
+        <elements xsi:type="xtext:Assignment" cardinality="*" feature="labels" operator="+=">
+          <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.42"/>
+        </elements>
+        <elements xsi:type="xtext:Keyword" value="CONTINUE"/>
+        <elements xsi:type="xtext:Assignment" cardinality="?" feature="labelName" operator="=">
+          <terminal xsi:type="xtext:RuleCall" rule="/1/@rules.0"/>
+        </elements>
+        <elements xsi:type="xtext:Group" cardinality="?">
+          <elements xsi:type="xtext:Keyword" value="WHEN"/>
+          <elements xsi:type="xtext:Assignment" feature="whenExpression" operator="=">
+            <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.35"/>
+          </elements>
+        </elements>
+        <elements xsi:type="xtext:Keyword" value=";"/>
+      </alternatives>
+    </rules>
+    <rules xsi:type="xtext:ParserRule" name="ExitStatement">
+      <type metamodel="/0/@metamodelDeclarations.0">
+        <classifier xsi:type="ecore:EClass" href="http://www.editor.plsql/xtext/PlSql#//ExitStatement"/>
+      </type>
+      <alternatives xsi:type="xtext:Group">
+        <elements xsi:type="xtext:Action">
+          <type metamodel="/0/@metamodelDeclarations.0">
+            <classifier xsi:type="ecore:EClass" href="http://www.editor.plsql/xtext/PlSql#//ExitStatement"/>
+          </type>
+        </elements>
+        <elements xsi:type="xtext:Assignment" cardinality="*" feature="labels" operator="+=">
+          <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.42"/>
+        </elements>
+        <elements xsi:type="xtext:Keyword" value="EXIT"/>
+        <elements xsi:type="xtext:Assignment" cardinality="?" feature="labelName" operator="=">
+          <terminal xsi:type="xtext:RuleCall" rule="/1/@rules.0"/>
+        </elements>
+        <elements xsi:type="xtext:Group" cardinality="?">
+          <elements xsi:type="xtext:Keyword" value="WHEN"/>
+          <elements xsi:type="xtext:Assignment" feature="whenExpression" operator="=">
+            <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.35"/>
+          </elements>
+        </elements>
+        <elements xsi:type="xtext:Keyword" value=";"/>
+      </alternatives>
+    </rules>
+    <rules xsi:type="xtext:ParserRule" name="FetchStatement">
+      <type metamodel="/0/@metamodelDeclarations.0">
+        <classifier xsi:type="ecore:EClass" href="http://www.editor.plsql/xtext/PlSql#//FetchStatement"/>
+      </type>
+      <alternatives xsi:type="xtext:Group">
+        <elements xsi:type="xtext:Assignment" cardinality="*" feature="labels" operator="+=">
+          <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.42"/>
+        </elements>
+        <elements xsi:type="xtext:Keyword" value="FETCH"/>
+        <elements xsi:type="xtext:Assignment" cardinality="?" feature="cursor" operator="=">
+          <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.68"/>
+        </elements>
+        <elements xsi:type="xtext:Assignment" feature="intoClause" operator="=">
+          <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.54"/>
+        </elements>
+        <elements xsi:type="xtext:Keyword" value=";"/>
+      </alternatives>
+    </rules>
+    <rules xsi:type="xtext:ParserRule" name="FetchStatementIntoClause">
+      <type metamodel="/0/@metamodelDeclarations.0">
+        <classifier xsi:type="ecore:EClass" href="http://www.editor.plsql/xtext/PlSql#//FetchStatementIntoClause"/>
+      </type>
+      <alternatives xsi:type="xtext:Alternatives">
+        <elements xsi:type="xtext:RuleCall" rule="/0/@rules.55"/>
+        <elements xsi:type="xtext:RuleCall" rule="/0/@rules.56"/>
+      </alternatives>
+    </rules>
+    <rules xsi:type="xtext:ParserRule" name="FetchStatementSingleIntoClause">
+      <type metamodel="/0/@metamodelDeclarations.0">
+        <classifier xsi:type="ecore:EClass" href="http://www.editor.plsql/xtext/PlSql#//FetchStatementSingleIntoClause"/>
+      </type>
+      <alternatives xsi:type="xtext:Group">
+        <elements xsi:type="xtext:Keyword" value="INTO"/>
+        <elements xsi:type="xtext:Assignment" cardinality="+" feature="targetVariables" operator="+=">
+          <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.68"/>
+        </elements>
+      </alternatives>
+    </rules>
+    <rules xsi:type="xtext:ParserRule" name="FetchStatementBulkIntoClause">
+      <type metamodel="/0/@metamodelDeclarations.0">
+        <classifier xsi:type="ecore:EClass" href="http://www.editor.plsql/xtext/PlSql#//FetchStatementBulkIntoClause"/>
+      </type>
+      <alternatives xsi:type="xtext:Group">
+        <elements xsi:type="xtext:Keyword" value="BULK"/>
+        <elements xsi:type="xtext:Keyword" value="COLLECT"/>
+        <elements xsi:type="xtext:Keyword" value="INTO"/>
+        <elements xsi:type="xtext:Assignment" cardinality="+" feature="targetVariables" operator="+=">
+          <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.68"/>
+        </elements>
+        <elements xsi:type="xtext:Group" cardinality="?">
+          <elements xsi:type="xtext:Keyword" value="LIMIT"/>
+          <elements xsi:type="xtext:Assignment" feature="limitExpression" operator="=">
+            <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.35"/>
+          </elements>
+        </elements>
+      </alternatives>
+    </rules>
+    <rules xsi:type="xtext:ParserRule" name="GotoStatement">
+      <type metamodel="/0/@metamodelDeclarations.0">
+        <classifier xsi:type="ecore:EClass" href="http://www.editor.plsql/xtext/PlSql#//GotoStatement"/>
+      </type>
+      <alternatives xsi:type="xtext:Group">
+        <elements xsi:type="xtext:Assignment" cardinality="*" feature="labels" operator="+=">
+          <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.42"/>
+        </elements>
+        <elements xsi:type="xtext:Keyword" value="GOTO"/>
+        <elements xsi:type="xtext:Assignment" feature="labelName" operator="=">
+          <terminal xsi:type="xtext:CrossReference">
+            <type metamodel="/0/@metamodelDeclarations.0">
+              <classifier xsi:type="ecore:EClass" href="http://www.editor.plsql/xtext/PlSql#//Label"/>
+            </type>
+            <terminal xsi:type="xtext:RuleCall" rule="/1/@rules.0"/>
+          </terminal>
+        </elements>
+        <elements xsi:type="xtext:Keyword" value=";"/>
+      </alternatives>
+    </rules>
+    <rules xsi:type="xtext:ParserRule" name="IfStatement">
+      <type metamodel="/0/@metamodelDeclarations.0">
+        <classifier xsi:type="ecore:EClass" href="http://www.editor.plsql/xtext/PlSql#//IfStatement"/>
+      </type>
+      <alternatives xsi:type="xtext:Group">
+        <elements xsi:type="xtext:Assignment" cardinality="*" feature="labels" operator="+=">
+          <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.42"/>
+        </elements>
+        <elements xsi:type="xtext:Keyword" value="IF"/>
+        <elements xsi:type="xtext:Assignment" feature="expression" operator="=">
+          <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.35"/>
+        </elements>
+        <elements xsi:type="xtext:Keyword" value="THEN"/>
+        <elements xsi:type="xtext:Assignment" cardinality="+" feature="statements" operator="+=">
+          <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.41"/>
+        </elements>
+        <elements xsi:type="xtext:Assignment" cardinality="*" feature="elsifBranches" operator="+=">
+          <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.59"/>
+        </elements>
+        <elements xsi:type="xtext:Assignment" cardinality="?" feature="elseBranch" operator="=">
+          <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.60"/>
+        </elements>
+        <elements xsi:type="xtext:Keyword" value="END"/>
+        <elements xsi:type="xtext:Keyword" value="IF"/>
+        <elements xsi:type="xtext:Keyword" value=";"/>
+      </alternatives>
+    </rules>
+    <rules xsi:type="xtext:ParserRule" name="IfStatementElsifBranch">
+      <type metamodel="/0/@metamodelDeclarations.0">
+        <classifier xsi:type="ecore:EClass" href="http://www.editor.plsql/xtext/PlSql#//IfStatementElsifBranch"/>
+      </type>
+      <alternatives xsi:type="xtext:Group">
+        <elements xsi:type="xtext:Keyword" value="ELSIF"/>
+        <elements xsi:type="xtext:Assignment" feature="expression" operator="=">
+          <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.35"/>
+        </elements>
+        <elements xsi:type="xtext:Keyword" value="THEN"/>
+        <elements xsi:type="xtext:Assignment" cardinality="+" feature="statements" operator="+=">
+          <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.41"/>
+        </elements>
+      </alternatives>
+    </rules>
+    <rules xsi:type="xtext:ParserRule" name="IfStatementElseBranch">
+      <type metamodel="/0/@metamodelDeclarations.0">
+        <classifier xsi:type="ecore:EClass" href="http://www.editor.plsql/xtext/PlSql#//IfStatementElseBranch"/>
+      </type>
+      <alternatives xsi:type="xtext:Group">
+        <elements xsi:type="xtext:Keyword" value="ELSE"/>
+        <elements xsi:type="xtext:Assignment" cardinality="+" feature="statements" operator="+=">
+          <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.41"/>
+        </elements>
+      </alternatives>
+    </rules>
+    <rules xsi:type="xtext:ParserRule" name="LoopStatement">
+      <type metamodel="/0/@metamodelDeclarations.0">
+        <classifier xsi:type="ecore:EClass" href="http://www.editor.plsql/xtext/PlSql#//LoopStatement"/>
+      </type>
+      <alternatives xsi:type="xtext:Alternatives">
+        <elements xsi:type="xtext:RuleCall" rule="/0/@rules.62"/>
+        <elements xsi:type="xtext:RuleCall" rule="/0/@rules.63"/>
+        <elements xsi:type="xtext:RuleCall" rule="/0/@rules.64"/>
+      </alternatives>
+    </rules>
+    <rules xsi:type="xtext:ParserRule" name="BasicLoopStatement">
+      <type metamodel="/0/@metamodelDeclarations.0">
+        <classifier xsi:type="ecore:EClass" href="http://www.editor.plsql/xtext/PlSql#//BasicLoopStatement"/>
+      </type>
+      <alternatives xsi:type="xtext:Group">
+        <elements xsi:type="xtext:Assignment" cardinality="*" feature="labels" operator="+=">
+          <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.42"/>
+        </elements>
+        <elements xsi:type="xtext:Keyword" value="LOOP"/>
+        <elements xsi:type="xtext:Assignment" cardinality="+" feature="statements" operator="+=">
+          <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.41"/>
+        </elements>
+        <elements xsi:type="xtext:Keyword" value="END"/>
+        <elements xsi:type="xtext:Keyword" value="LOOP"/>
+        <elements xsi:type="xtext:Assignment" cardinality="?" feature="endLabel" operator="=">
+          <terminal xsi:type="xtext:RuleCall" rule="/1/@rules.0"/>
+        </elements>
+        <elements xsi:type="xtext:Keyword" value=";"/>
+      </alternatives>
+    </rules>
+    <rules xsi:type="xtext:ParserRule" name="WhileLoopStatement">
+      <type metamodel="/0/@metamodelDeclarations.0">
+        <classifier xsi:type="ecore:EClass" href="http://www.editor.plsql/xtext/PlSql#//WhileLoopStatement"/>
+      </type>
+      <alternatives xsi:type="xtext:Group">
+        <elements xsi:type="xtext:Assignment" cardinality="*" feature="labels" operator="+=">
+          <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.42"/>
+        </elements>
+        <elements xsi:type="xtext:Keyword" value="WHILE"/>
+        <elements xsi:type="xtext:Assignment" feature="expression" operator="=">
+          <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.35"/>
+        </elements>
+        <elements xsi:type="xtext:Keyword" value="LOOP"/>
+        <elements xsi:type="xtext:Assignment" cardinality="+" feature="statements" operator="+=">
+          <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.41"/>
+        </elements>
+        <elements xsi:type="xtext:Keyword" value="END"/>
+        <elements xsi:type="xtext:Keyword" value="LOOP"/>
+        <elements xsi:type="xtext:Assignment" cardinality="?" feature="endLabel" operator="=">
+          <terminal xsi:type="xtext:RuleCall" rule="/1/@rules.0"/>
+        </elements>
+        <elements xsi:type="xtext:Keyword" value=";"/>
+      </alternatives>
+    </rules>
+    <rules xsi:type="xtext:ParserRule" name="ForLoopStatement">
+      <type metamodel="/0/@metamodelDeclarations.0">
+        <classifier xsi:type="ecore:EClass" href="http://www.editor.plsql/xtext/PlSql#//ForLoopStatement"/>
+      </type>
+      <alternatives xsi:type="xtext:Group">
+        <elements xsi:type="xtext:Assignment" cardinality="*" feature="labels" operator="+=">
+          <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.42"/>
+        </elements>
+        <elements xsi:type="xtext:Keyword" value="FOR"/>
+        <elements xsi:type="xtext:Assignment" feature="indexVariable" operator="=">
+          <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.71"/>
+        </elements>
+        <elements xsi:type="xtext:Keyword" value="IN"/>
+        <elements xsi:type="xtext:Keyword" cardinality="?" value="REVERSE"/>
+        <elements xsi:type="xtext:Assignment" feature="lowerBound" operator="=">
+          <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.35"/>
+        </elements>
+        <elements xsi:type="xtext:Keyword" value=".."/>
+        <elements xsi:type="xtext:Assignment" feature="upperBound" operator="=">
+          <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.35"/>
+        </elements>
+        <elements xsi:type="xtext:Keyword" value="LOOP"/>
+        <elements xsi:type="xtext:Assignment" cardinality="+" feature="statements" operator="+=">
+          <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.41"/>
+        </elements>
+        <elements xsi:type="xtext:Keyword" value="END"/>
+        <elements xsi:type="xtext:Keyword" value="LOOP"/>
+        <elements xsi:type="xtext:Assignment" cardinality="?" feature="endLabel" operator="=">
+          <terminal xsi:type="xtext:RuleCall" rule="/1/@rules.0"/>
+        </elements>
+        <elements xsi:type="xtext:Keyword" value=";"/>
+      </alternatives>
+    </rules>
+    <rules xsi:type="xtext:ParserRule" name="ReturnStatement">
+      <type metamodel="/0/@metamodelDeclarations.0">
+        <classifier xsi:type="ecore:EClass" href="http://www.editor.plsql/xtext/PlSql#//ReturnStatement"/>
+      </type>
+      <alternatives xsi:type="xtext:Group">
+        <elements xsi:type="xtext:Action">
+          <type metamodel="/0/@metamodelDeclarations.0">
+            <classifier xsi:type="ecore:EClass" href="http://www.editor.plsql/xtext/PlSql#//ReturnStatement"/>
+          </type>
+        </elements>
+        <elements xsi:type="xtext:Assignment" cardinality="*" feature="labels" operator="+=">
+          <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.42"/>
+        </elements>
+        <elements xsi:type="xtext:Keyword" value="RETURN"/>
+        <elements xsi:type="xtext:Assignment" cardinality="?" feature="expression" operator="=">
+          <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.35"/>
+        </elements>
+        <elements xsi:type="xtext:Keyword" value=";"/>
+      </alternatives>
+    </rules>
+    <rules xsi:type="xtext:ParserRule" name="NullStatement">
+      <type metamodel="/0/@metamodelDeclarations.0">
+        <classifier xsi:type="ecore:EClass" href="http://www.editor.plsql/xtext/PlSql#//NullStatement"/>
+      </type>
+      <alternatives xsi:type="xtext:Group">
+        <elements xsi:type="xtext:Action">
+          <type metamodel="/0/@metamodelDeclarations.0">
+            <classifier xsi:type="ecore:EClass" href="http://www.editor.plsql/xtext/PlSql#//NullStatement"/>
+          </type>
+        </elements>
+        <elements xsi:type="xtext:Assignment" cardinality="*" feature="labels" operator="+=">
+          <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.42"/>
+        </elements>
+        <elements xsi:type="xtext:Keyword" value="NULL"/>
+        <elements xsi:type="xtext:Keyword" value=";"/>
+      </alternatives>
+    </rules>
+    <rules xsi:type="xtext:ParserRule" name="RaiseStatement">
+      <type metamodel="/0/@metamodelDeclarations.0">
+        <classifier xsi:type="ecore:EClass" href="http://www.editor.plsql/xtext/PlSql#//RaiseStatement"/>
+      </type>
+      <alternatives xsi:type="xtext:Group">
+        <elements xsi:type="xtext:Action">
+          <type metamodel="/0/@metamodelDeclarations.0">
+            <classifier xsi:type="ecore:EClass" href="http://www.editor.plsql/xtext/PlSql#//RaiseStatement"/>
+          </type>
+        </elements>
+        <elements xsi:type="xtext:Assignment" cardinality="*" feature="labels" operator="+=">
+          <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.42"/>
+        </elements>
+        <elements xsi:type="xtext:Keyword" value="RAISE"/>
+        <elements xsi:type="xtext:Assignment" cardinality="?" feature="exceptionName" operator="=">
+          <terminal xsi:type="xtext:RuleCall" rule="/1/@rules.0"/>
+        </elements>
+        <elements xsi:type="xtext:Keyword" value=";"/>
+      </alternatives>
+    </rules>
+    <rules xsi:type="xtext:ParserRule" name="VariableRef">
+      <type metamodel="/0/@metamodelDeclarations.0">
+        <classifier xsi:type="ecore:EClass" href="http://www.editor.plsql/xtext/PlSql#//VariableRef"/>
+      </type>
+      <alternatives xsi:type="xtext:Group">
+        <elements xsi:type="xtext:Assignment" cardinality="?" feature="isHostRef" operator="?=">
+          <terminal xsi:type="xtext:Keyword" value=":"/>
+        </elements>
+        <elements xsi:type="xtext:Assignment" feature="name" operator="=">
+          <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.69"/>
+        </elements>
+      </alternatives>
+    </rules>
+    <rules xsi:type="xtext:ParserRule" name="QualifiedName">
+      <type metamodel="/0/@metamodelDeclarations.0">
+        <classifier xsi:type="ecore:EClass" href="http://www.editor.plsql/xtext/PlSql#//QualifiedName"/>
+      </type>
+      <alternatives xsi:type="xtext:Group">
+        <elements xsi:type="xtext:Assignment" feature="names" operator="+=">
+          <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.70"/>
+        </elements>
+        <elements xsi:type="xtext:Group" cardinality="*">
+          <elements xsi:type="xtext:Keyword" value="."/>
+          <elements xsi:type="xtext:Assignment" feature="names" operator="+=">
+            <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.70"/>
+          </elements>
+        </elements>
+      </alternatives>
+    </rules>
+    <rules xsi:type="xtext:ParserRule" name="Name">
+      <type metamodel="/0/@metamodelDeclarations.0">
+        <classifier xsi:type="ecore:EClass" href="http://www.editor.plsql/xtext/PlSql#//Name"/>
+      </type>
+      <alternatives xsi:type="xtext:Assignment" feature="declaration" operator="=">
+        <terminal xsi:type="xtext:CrossReference">
+          <type metamodel="/0/@metamodelDeclarations.0">
+            <classifier xsi:type="ecore:EClass" href="http://www.editor.plsql/xtext/PlSql#//NameDeclaration"/>
+          </type>
+          <terminal xsi:type="xtext:RuleCall" rule="/1/@rules.0"/>
+        </terminal>
+      </alternatives>
+    </rules>
+    <rules xsi:type="xtext:ParserRule" name="LoopVariableDeclaration">
+      <type metamodel="/0/@metamodelDeclarations.0">
+        <classifier xsi:type="ecore:EClass" href="http://www.editor.plsql/xtext/PlSql#//LoopVariableDeclaration"/>
+      </type>
+      <alternatives xsi:type="xtext:Assignment" feature="name" operator="=">
+        <terminal xsi:type="xtext:RuleCall" rule="/1/@rules.0"/>
+      </alternatives>
+    </rules>
+    <rules xsi:type="xtext:ParserRule" name="NameDeclaration">
+      <type metamodel="/0/@metamodelDeclarations.0">
+        <classifier xsi:type="ecore:EClass" href="http://www.editor.plsql/xtext/PlSql#//NameDeclaration"/>
+      </type>
+      <alternatives xsi:type="xtext:Alternatives">
+        <elements xsi:type="xtext:RuleCall" rule="/0/@rules.32"/>
+        <elements xsi:type="xtext:RuleCall" rule="/0/@rules.7"/>
+        <elements xsi:type="xtext:RuleCall" rule="/0/@rules.1"/>
+        <elements xsi:type="xtext:RuleCall" rule="/0/@rules.5"/>
+        <elements xsi:type="xtext:RuleCall" rule="/0/@rules.2"/>
+        <elements xsi:type="xtext:RuleCall" rule="/0/@rules.4"/>
+        <elements xsi:type="xtext:RuleCall" rule="/0/@rules.71"/>
+      </alternatives>
+    </rules>
+    <rules xsi:type="xtext:TerminalRule" name="SL_COMMENT">
+      <type metamodel="/1/@metamodelDeclarations.0">
+        <classifier xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      </type>
+      <alternatives xsi:type="xtext:Group">
+        <elements xsi:type="xtext:Keyword" value="--"/>
+        <elements xsi:type="xtext:NegatedToken" cardinality="*">
+          <terminal xsi:type="xtext:Alternatives">
+            <elements xsi:type="xtext:Keyword" value="&#xA;"/>
+            <elements xsi:type="xtext:Keyword" value="&#xD;"/>
+          </terminal>
+        </elements>
+        <elements xsi:type="xtext:Group" cardinality="?">
+          <elements xsi:type="xtext:Keyword" cardinality="?" value="&#xD;"/>
+          <elements xsi:type="xtext:Keyword" value="&#xA;"/>
+        </elements>
+      </alternatives>
+    </rules>
+  </xtext:Grammar>
+  <xtext:Grammar name="org.eclipse.xtext.common.Terminals" definesHiddenTokens="true" hiddenTokens="/1/@rules.5 /1/@rules.3 /0/@rules.73">
+    <metamodelDeclarations xsi:type="xtext:ReferencedMetamodel" alias="ecore">
+      <ePackage href="http://www.eclipse.org/emf/2002/Ecore#/"/>
+    </metamodelDeclarations>
+    <rules xsi:type="xtext:TerminalRule" name="ID">
+      <type metamodel="/1/@metamodelDeclarations.0">
+        <classifier xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      </type>
+      <alternatives xsi:type="xtext:Group">
+        <elements xsi:type="xtext:Keyword" cardinality="?" value="^"/>
+        <elements xsi:type="xtext:Alternatives">
+          <elements xsi:type="xtext:CharacterRange">
+            <left value="a"/>
+            <right value="z"/>
+          </elements>
+          <elements xsi:type="xtext:CharacterRange">
+            <left value="A"/>
+            <right value="Z"/>
+          </elements>
+          <elements xsi:type="xtext:Keyword" value="_"/>
+        </elements>
+        <elements xsi:type="xtext:Alternatives" cardinality="*">
+          <elements xsi:type="xtext:CharacterRange">
+            <left value="a"/>
+            <right value="z"/>
+          </elements>
+          <elements xsi:type="xtext:CharacterRange">
+            <left value="A"/>
+            <right value="Z"/>
+          </elements>
+          <elements xsi:type="xtext:Keyword" value="_"/>
+          <elements xsi:type="xtext:CharacterRange">
+            <left value="0"/>
+            <right value="9"/>
+          </elements>
+        </elements>
+      </alternatives>
+    </rules>
+    <rules xsi:type="xtext:TerminalRule" name="INT">
+      <type metamodel="/1/@metamodelDeclarations.0">
+        <classifier xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+      </type>
+      <alternatives xsi:type="xtext:CharacterRange" cardinality="+">
+        <left value="0"/>
+        <right value="9"/>
+      </alternatives>
+    </rules>
+    <rules xsi:type="xtext:TerminalRule" name="STRING">
+      <type metamodel="/1/@metamodelDeclarations.0">
+        <classifier xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      </type>
+      <alternatives xsi:type="xtext:Alternatives">
+        <elements xsi:type="xtext:Group">
+          <elements xsi:type="xtext:Keyword" value="&quot;"/>
+          <elements xsi:type="xtext:Alternatives" cardinality="*">
+            <elements xsi:type="xtext:Group">
+              <elements xsi:type="xtext:Keyword" value="\"/>
+              <elements xsi:type="xtext:Alternatives">
+                <elements xsi:type="xtext:Keyword" value="b"/>
+                <elements xsi:type="xtext:Keyword" value="t"/>
+                <elements xsi:type="xtext:Keyword" value="n"/>
+                <elements xsi:type="xtext:Keyword" value="f"/>
+                <elements xsi:type="xtext:Keyword" value="r"/>
+                <elements xsi:type="xtext:Keyword" value="&quot;"/>
+                <elements xsi:type="xtext:Keyword" value="'"/>
+                <elements xsi:type="xtext:Keyword" value="\"/>
+              </elements>
+            </elements>
+            <elements xsi:type="xtext:NegatedToken">
+              <terminal xsi:type="xtext:Alternatives">
+                <elements xsi:type="xtext:Keyword" value="\"/>
+                <elements xsi:type="xtext:Keyword" value="&quot;"/>
+              </terminal>
+            </elements>
+          </elements>
+          <elements xsi:type="xtext:Keyword" value="&quot;"/>
+        </elements>
+        <elements xsi:type="xtext:Group">
+          <elements xsi:type="xtext:Keyword" value="'"/>
+          <elements xsi:type="xtext:Alternatives" cardinality="*">
+            <elements xsi:type="xtext:Group">
+              <elements xsi:type="xtext:Keyword" value="\"/>
+              <elements xsi:type="xtext:Alternatives">
+                <elements xsi:type="xtext:Keyword" value="b"/>
+                <elements xsi:type="xtext:Keyword" value="t"/>
+                <elements xsi:type="xtext:Keyword" value="n"/>
+                <elements xsi:type="xtext:Keyword" value="f"/>
+                <elements xsi:type="xtext:Keyword" value="r"/>
+                <elements xsi:type="xtext:Keyword" value="&quot;"/>
+                <elements xsi:type="xtext:Keyword" value="'"/>
+                <elements xsi:type="xtext:Keyword" value="\"/>
+              </elements>
+            </elements>
+            <elements xsi:type="xtext:NegatedToken">
+              <terminal xsi:type="xtext:Alternatives">
+                <elements xsi:type="xtext:Keyword" value="\"/>
+                <elements xsi:type="xtext:Keyword" value="'"/>
+              </terminal>
+            </elements>
+          </elements>
+          <elements xsi:type="xtext:Keyword" value="'"/>
+        </elements>
+      </alternatives>
+    </rules>
+    <rules xsi:type="xtext:TerminalRule" name="ML_COMMENT">
+      <type metamodel="/1/@metamodelDeclarations.0">
+        <classifier xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      </type>
+      <alternatives xsi:type="xtext:Group">
+        <elements xsi:type="xtext:Keyword" value="/*"/>
+        <elements xsi:type="xtext:UntilToken">
+          <terminal xsi:type="xtext:Keyword" value="*/"/>
+        </elements>
+      </alternatives>
+    </rules>
+    <rules xsi:type="xtext:TerminalRule" name="SL_COMMENT">
+      <type metamodel="/1/@metamodelDeclarations.0">
+        <classifier xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      </type>
+      <alternatives xsi:type="xtext:Group">
+        <elements xsi:type="xtext:Keyword" value="//"/>
+        <elements xsi:type="xtext:NegatedToken" cardinality="*">
+          <terminal xsi:type="xtext:Alternatives">
+            <elements xsi:type="xtext:Keyword" value="&#xA;"/>
+            <elements xsi:type="xtext:Keyword" value="&#xD;"/>
+          </terminal>
+        </elements>
+        <elements xsi:type="xtext:Group" cardinality="?">
+          <elements xsi:type="xtext:Keyword" cardinality="?" value="&#xD;"/>
+          <elements xsi:type="xtext:Keyword" value="&#xA;"/>
+        </elements>
+      </alternatives>
+    </rules>
+    <rules xsi:type="xtext:TerminalRule" name="WS">
+      <type metamodel="/1/@metamodelDeclarations.0">
+        <classifier xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      </type>
+      <alternatives xsi:type="xtext:Alternatives" cardinality="+">
+        <elements xsi:type="xtext:Keyword" value=" "/>
+        <elements xsi:type="xtext:Keyword" value="&#x9;"/>
+        <elements xsi:type="xtext:Keyword" value="&#xD;"/>
+        <elements xsi:type="xtext:Keyword" value="&#xA;"/>
+      </alternatives>
+    </rules>
+    <rules xsi:type="xtext:TerminalRule" name="ANY_OTHER">
+      <type metamodel="/1/@metamodelDeclarations.0">
+        <classifier xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      </type>
+      <alternatives xsi:type="xtext:Wildcard"/>
+    </rules>
+  </xtext:Grammar>
+</xmi:XMI>

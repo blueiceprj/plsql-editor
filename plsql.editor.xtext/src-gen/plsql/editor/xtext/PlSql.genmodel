@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/plsql.editor.xtext/src-gen"
+    editDirectory="/plsql.editor.xtext.edit/src" editorDirectory="/plsql.editor.xtext.editor/src"
+    modelPluginID="plsql.editor.xtext" forceOverwrite="true" modelName="PlSql" updateClasspath="false"
+    rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container" complianceLevel="5.0"
+    copyrightFields="false" editPluginID="plsql.editor.xtext.edit" editorPluginID="plsql.editor.xtext.editor">
+  <genPackages prefix="PlSql" basePackage="plsql.editor.xtext" disposableProviderFactory="true"
+      ecorePackage="PlSql.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="PlSql.ecore#//InvokerRight">
+      <genEnumLiterals ecoreEnumLiteral="PlSql.ecore#//InvokerRight/CURRENT_USER"/>
+      <genEnumLiterals ecoreEnumLiteral="PlSql.ecore#//InvokerRight/DEFINER"/>
+    </genEnums>
+    <genClasses ecoreClass="PlSql.ecore#//CompilationUnit"/>
+    <genClasses ecoreClass="PlSql.ecore#//Procedure">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute PlSql.ecore#//Procedure/schemaName"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PlSql.ecore#//Procedure/parameters"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PlSql.ecore#//Procedure/invokerRights"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PlSql.ecore#//Procedure/content"/>
+    </genClasses>
+    <genClasses ecoreClass="PlSql.ecore#//Package">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute PlSql.ecore#//Package/schemaName"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PlSql.ecore#//Package/invokerRights"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PlSql.ecore#//Package/items"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute PlSql.ecore#//Package/endName"/>
+    </genClasses>
+    <genClasses ecoreClass="PlSql.ecore#//ProcedureDeclaration">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute PlSql.ecore#//ProcedureDeclaration/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PlSql.ecore#//ProcedureDeclaration/parameters"/>
+    </genClasses>
+    <genClasses ecoreClass="PlSql.ecore#//ProcedureDefinition">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PlSql.ecore#//ProcedureDefinition/parameters"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PlSql.ecore#//ProcedureDefinition/implementation"/>
+    </genClasses>
+    <genClasses ecoreClass="PlSql.ecore#//Function">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute PlSql.ecore#//Function/schemaName"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PlSql.ecore#//Function/parameters"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute PlSql.ecore#//Function/returnType"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PlSql.ecore#//Function/functionClauses"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PlSql.ecore#//Function/content"/>
+    </genClasses>
+    <genClasses ecoreClass="PlSql.ecore#//ParameterSequence">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PlSql.ecore#//ParameterSequence/parameters"/>
+    </genClasses>
+    <genClasses ecoreClass="PlSql.ecore#//ParameterDeclaration">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute PlSql.ecore#//ParameterDeclaration/behavior"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute PlSql.ecore#//ParameterDeclaration/dataType"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PlSql.ecore#//ParameterDeclaration/value"/>
+    </genClasses>
+    <genClasses ecoreClass="PlSql.ecore#//ParameterValue">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PlSql.ecore#//ParameterValue/expression"/>
+    </genClasses>
+    <genClasses ecoreClass="PlSql.ecore#//ProcedureInvokerRightsClause">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute PlSql.ecore#//ProcedureInvokerRightsClause/right"/>
+    </genClasses>
+    <genClasses ecoreClass="PlSql.ecore#//FunctionInvokerRightsClause">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute PlSql.ecore#//FunctionInvokerRightsClause/right"/>
+    </genClasses>
+    <genClasses ecoreClass="PlSql.ecore#//Pragma"/>
+    <genClasses ecoreClass="PlSql.ecore#//PragmaRestrictReferences">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute PlSql.ecore#//PragmaRestrictReferences/restrictions"/>
+    </genClasses>
+    <genClasses ecoreClass="PlSql.ecore#//PragmaTimestamp">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute PlSql.ecore#//PragmaTimestamp/timestamp"/>
+    </genClasses>
+    <genClasses ecoreClass="PlSql.ecore#//ProcedureContent"/>
+    <genClasses ecoreClass="PlSql.ecore#//ProcedureImplementation">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PlSql.ecore#//ProcedureImplementation/declareSection"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PlSql.ecore#//ProcedureImplementation/body"/>
+    </genClasses>
+    <genClasses ecoreClass="PlSql.ecore#//FunctionContent"/>
+    <genClasses ecoreClass="PlSql.ecore#//FunctionImplementation">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PlSql.ecore#//FunctionImplementation/declareSection"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PlSql.ecore#//FunctionImplementation/body"/>
+    </genClasses>
+    <genClasses ecoreClass="PlSql.ecore#//FunctionClause"/>
+    <genClasses ecoreClass="PlSql.ecore#//DeterministicClause"/>
+    <genClasses ecoreClass="PlSql.ecore#//ResultCacheClause">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute PlSql.ecore#//ResultCacheClause/dataSources"/>
+    </genClasses>
+    <genClasses ecoreClass="PlSql.ecore#//PipelinedClause"/>
+    <genClasses ecoreClass="PlSql.ecore#//StatementBody">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PlSql.ecore#//StatementBody/statements"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute PlSql.ecore#//StatementBody/endName"/>
+    </genClasses>
+    <genClasses ecoreClass="PlSql.ecore#//DeclareSection">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PlSql.ecore#//DeclareSection/items"/>
+    </genClasses>
+    <genClasses ecoreClass="PlSql.ecore#//Item"/>
+    <genClasses ecoreClass="PlSql.ecore#//ItemDeclaration"/>
+    <genClasses ecoreClass="PlSql.ecore#//ExternalProcedureDeclaration"/>
+    <genClasses ecoreClass="PlSql.ecore#//VariableDeclaration">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute PlSql.ecore#//VariableDeclaration/isConstant"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute PlSql.ecore#//VariableDeclaration/dataType"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute PlSql.ecore#//VariableDeclaration/isNotNull"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PlSql.ecore#//VariableDeclaration/value"/>
+    </genClasses>
+    <genClasses ecoreClass="PlSql.ecore#//VariableValue">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PlSql.ecore#//VariableValue/expression"/>
+    </genClasses>
+    <genClasses ecoreClass="PlSql.ecore#//Expression"/>
+    <genClasses ecoreClass="PlSql.ecore#//IntLiteralExpression">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute PlSql.ecore#//IntLiteralExpression/value"/>
+    </genClasses>
+    <genClasses ecoreClass="PlSql.ecore#//StringLiteralExpression">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute PlSql.ecore#//StringLiteralExpression/value"/>
+    </genClasses>
+    <genClasses ecoreClass="PlSql.ecore#//BooleanLiteralExpression">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute PlSql.ecore#//BooleanLiteralExpression/value"/>
+    </genClasses>
+    <genClasses ecoreClass="PlSql.ecore#//NullLiteralExpression"/>
+    <genClasses ecoreClass="PlSql.ecore#//VariableRefExpression">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PlSql.ecore#//VariableRefExpression/variable"/>
+    </genClasses>
+    <genClasses ecoreClass="PlSql.ecore#//Statement">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PlSql.ecore#//Statement/labels"/>
+    </genClasses>
+    <genClasses ecoreClass="PlSql.ecore#//Label">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute PlSql.ecore#//Label/name"/>
+    </genClasses>
+    <genClasses ecoreClass="PlSql.ecore#//AssignmentStatement">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PlSql.ecore#//AssignmentStatement/target"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PlSql.ecore#//AssignmentStatement/expression"/>
+    </genClasses>
+    <genClasses ecoreClass="PlSql.ecore#//AssignmentTarget"/>
+    <genClasses ecoreClass="PlSql.ecore#//VariableAssignmentTarget">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PlSql.ecore#//VariableAssignmentTarget/variable"/>
+    </genClasses>
+    <genClasses ecoreClass="PlSql.ecore#//BlockStatement">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PlSql.ecore#//BlockStatement/declareSection"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PlSql.ecore#//BlockStatement/body"/>
+    </genClasses>
+    <genClasses ecoreClass="PlSql.ecore#//CaseStatement">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PlSql.ecore#//CaseStatement/expression"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PlSql.ecore#//CaseStatement/whenBranches"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PlSql.ecore#//CaseStatement/elseBranch"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute PlSql.ecore#//CaseStatement/endLabel"/>
+    </genClasses>
+    <genClasses ecoreClass="PlSql.ecore#//CaseStatementWhenBranch">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PlSql.ecore#//CaseStatementWhenBranch/expression"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PlSql.ecore#//CaseStatementWhenBranch/statements"/>
+    </genClasses>
+    <genClasses ecoreClass="PlSql.ecore#//CaseStatementElseBranch">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PlSql.ecore#//CaseStatementElseBranch/statements"/>
+    </genClasses>
+    <genClasses ecoreClass="PlSql.ecore#//CloseStatement">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PlSql.ecore#//CloseStatement/cursor"/>
+    </genClasses>
+    <genClasses ecoreClass="PlSql.ecore#//ContinueStatement">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute PlSql.ecore#//ContinueStatement/labelName"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PlSql.ecore#//ContinueStatement/whenExpression"/>
+    </genClasses>
+    <genClasses ecoreClass="PlSql.ecore#//ExitStatement">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute PlSql.ecore#//ExitStatement/labelName"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PlSql.ecore#//ExitStatement/whenExpression"/>
+    </genClasses>
+    <genClasses ecoreClass="PlSql.ecore#//FetchStatement">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PlSql.ecore#//FetchStatement/cursor"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PlSql.ecore#//FetchStatement/intoClause"/>
+    </genClasses>
+    <genClasses ecoreClass="PlSql.ecore#//FetchStatementIntoClause">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PlSql.ecore#//FetchStatementIntoClause/targetVariables"/>
+    </genClasses>
+    <genClasses ecoreClass="PlSql.ecore#//FetchStatementSingleIntoClause"/>
+    <genClasses ecoreClass="PlSql.ecore#//FetchStatementBulkIntoClause">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PlSql.ecore#//FetchStatementBulkIntoClause/limitExpression"/>
+    </genClasses>
+    <genClasses ecoreClass="PlSql.ecore#//GotoStatement">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference PlSql.ecore#//GotoStatement/labelName"/>
+    </genClasses>
+    <genClasses ecoreClass="PlSql.ecore#//IfStatement">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PlSql.ecore#//IfStatement/expression"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PlSql.ecore#//IfStatement/statements"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PlSql.ecore#//IfStatement/elsifBranches"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PlSql.ecore#//IfStatement/elseBranch"/>
+    </genClasses>
+    <genClasses ecoreClass="PlSql.ecore#//IfStatementElsifBranch">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PlSql.ecore#//IfStatementElsifBranch/expression"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PlSql.ecore#//IfStatementElsifBranch/statements"/>
+    </genClasses>
+    <genClasses ecoreClass="PlSql.ecore#//IfStatementElseBranch">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PlSql.ecore#//IfStatementElseBranch/statements"/>
+    </genClasses>
+    <genClasses ecoreClass="PlSql.ecore#//LoopStatement">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PlSql.ecore#//LoopStatement/statements"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute PlSql.ecore#//LoopStatement/endLabel"/>
+    </genClasses>
+    <genClasses ecoreClass="PlSql.ecore#//BasicLoopStatement"/>
+    <genClasses ecoreClass="PlSql.ecore#//WhileLoopStatement">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PlSql.ecore#//WhileLoopStatement/expression"/>
+    </genClasses>
+    <genClasses ecoreClass="PlSql.ecore#//ForLoopStatement">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PlSql.ecore#//ForLoopStatement/indexVariable"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PlSql.ecore#//ForLoopStatement/lowerBound"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PlSql.ecore#//ForLoopStatement/upperBound"/>
+    </genClasses>
+    <genClasses ecoreClass="PlSql.ecore#//ReturnStatement">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PlSql.ecore#//ReturnStatement/expression"/>
+    </genClasses>
+    <genClasses ecoreClass="PlSql.ecore#//NullStatement"/>
+    <genClasses ecoreClass="PlSql.ecore#//RaiseStatement">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute PlSql.ecore#//RaiseStatement/exceptionName"/>
+    </genClasses>
+    <genClasses ecoreClass="PlSql.ecore#//VariableRef">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute PlSql.ecore#//VariableRef/isHostRef"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PlSql.ecore#//VariableRef/name"/>
+    </genClasses>
+    <genClasses ecoreClass="PlSql.ecore#//QualifiedName">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PlSql.ecore#//QualifiedName/names"/>
+    </genClasses>
+    <genClasses ecoreClass="PlSql.ecore#//Name">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference PlSql.ecore#//Name/declaration"/>
+    </genClasses>
+    <genClasses ecoreClass="PlSql.ecore#//LoopVariableDeclaration"/>
+    <genClasses ecoreClass="PlSql.ecore#//NameDeclaration">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute PlSql.ecore#//NameDeclaration/name"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>
